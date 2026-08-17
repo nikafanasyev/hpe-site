@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #0C3839; font-family: 'Manrope', sans-serif; }
+    a { color: #C28449; text-decoration: none; }
+    a:hover { color: #BAD6DB; }
+    ::selection { background: #C28449; color: #0C3839; }
+    @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 1024px) {
+      .advantages-grid, .works-grid, .scenarios-grid, .testimonials-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+    }
+    @media (max-width: 900px) {
+      .hero-section, .calc-grid, .contact-grid { grid-template-columns: 1fr !important; }
+      .calc-grid > div:nth-child(3) { border-left: none !important; padding-left: 0 !important; margin-top: 8px; }
+      .site-nav { display: none !important; }
+    }
+    @media (max-width: 768px) {
+      .section-pad { padding: 60px 24px !important; }
+      .site-header { padding: 16px 24px !important; }
+      .site-footer { padding: 24px !important; flex-direction: column !important; gap: 12px !important; text-align: center !important; }
+      .hero-title { font-size: 38px !important; }
+      .trust-stats { grid-template-columns: repeat(2,1fr) !important; }
+      .header-actions a:first-child { display: none !important; }
+    }
+    @media (max-width: 600px) {
+      .advantages-grid, .works-grid, .scenarios-grid, .testimonials-grid { grid-template-columns: minmax(0,1fr) !important; }
+      .hero-title { font-size: 30px !important; }
+      h2 { font-size: 28px !important; }
+    }
+  </style>
+</helmet>
+
+<div style="background:#0C3839;min-height:100vh;color:#BAD6DB">
+
+  <header class="site-header" style="display:flex;align-items:center;justify-content:space-between;padding:20px 56px;background:#0C3839;border-bottom:1px solid #2B585E;position:sticky;top:0;z-index:50">
+    <img src="assets/logo.png" alt="HPE" style="height:44px;width:auto"/>
+    <nav class="site-nav" style="display:flex;gap:32px;align-items:center">
+      <a href="#services" style="color:#BAD6DB;font-size:15px">Услуги</a>
+      <a href="#scenarios" style="color:#BAD6DB;font-size:15px">Сценарии</a>
+      <a href="#works" style="color:#BAD6DB;font-size:15px">Работы</a>
+      <a href="#trust" style="color:#BAD6DB;font-size:15px">О нас</a>
+      <a href="#contact" style="color:#BAD6DB;font-size:15px">Контакты</a>
+    </nav>
+    <div class="header-actions" style="display:flex;align-items:center;gap:20px">
+      <a href="tel:+70000000000" style="color:#BAD6DB;font-size:15px;font-weight:600">+7 (000) 000-00-00</a>
+      <a href="#contact" style="background:#C28449;color:#0C3839;padding:12px 24px;border-radius:10px;font-weight:600;font-size:14px;transition:background 0.15s" style-hover="background:#BAD6DB">Обратный звонок</a>
+    </div>
+  </header>
+
+  <section class="hero-section section-pad" style="background:#2B585E;padding:100px 56px;display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center">
+    <div>
+      <div style="color:#C28449;font-size:15px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px">Кальянный кейтеринг и аутсорсинг</div>
+      <h1 class="hero-title" style="font-family:'Playfair Display',serif;font-size:56px;line-height:1.12;color:#BAD6DB;margin:0 0 24px 0;font-weight:600">Кальянный кейтеринг<br/>приедет за 60 минут</h1>
+      <p style="font-size:18px;line-height:1.6;color:#BAD6DB;opacity:0.85;max-width:480px;margin:0 0 40px 0">Проводим мероприятия любого формата, берём кальянное направление баров и ресторанов под ключ. Работаем с организациями по договору.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <a href="#calculator" style="background:#C28449;color:#0C3839;padding:16px 32px;border-radius:10px;font-weight:600;font-size:16px;transition:background 0.15s" style-hover="background:#BAD6DB">Рассчитать стоимость</a>
+        <a href="#contact" style="border:1px solid #BAD6DB;color:#BAD6DB;padding:16px 32px;border-radius:10px;font-weight:600;font-size:16px;transition:background 0.15s,color 0.15s" style-hover="background:#BAD6DB;color:#0C3839">Заказать звонок</a>
+      </div>
+    </div>
+    <div style="width:100%;height:480px;position:relative;border-radius:4px;overflow:hidden;background:repeating-linear-gradient(135deg,#24494e,#24494e 14px,#2B585E 14px,#2B585E 28px)">
+      <video src="{{ heroVideoUrl }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="width:100%;height:100%;object-fit:cover;display:{{ heroVideoDisplay }}"></video>
+      <label style="position:absolute;inset:0;display:{{ heroUploadDisplay }};align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer">
+        <span style="font-family:monospace;font-size:13px;color:#BAD6DB;letter-spacing:0.03em;background:rgba(12,56,57,0.55);padding:10px 16px;border-radius:10px">нажмите, чтобы загрузить видео мероприятия</span>
+        <input type="file" accept="video/*" onChange="{{ onHeroVideoUpload }}" style="display:none"/>
+      </label>
+    </div>
+  </section>
+
+  <section id="services" class="section-pad" style="background:#BAD6DB;padding:100px 56px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#0C3839;margin:0 0 12px 0;font-weight:600">Что мы делаем</h2>
+    <p style="font-size:17px;color:#2B585E;margin:0 0 32px 0;max-width:560px">Два направления: кейтеринг на мероприятия и аутсорсинг для заведений</p>
+    <div style="display:flex;gap:8px;margin-bottom:32px">
+      <button onClick="{{ showCateringTab }}" style="padding:12px 24px;border-radius:10px;border:1px solid #2B585E;font-size:14px;font-weight:600;cursor:pointer;background:{{ cateringTabBg }};color:#0C3839;transition:background 0.15s" style-hover="background:#C28449">Кейтеринг</button>
+      <button onClick="{{ showOutsourcingTab }}" style="padding:12px 24px;border-radius:10px;border:1px solid #2B585E;font-size:14px;font-weight:600;cursor:pointer;background:{{ outsourcingTabBg }};color:#0C3839;transition:background 0.15s" style-hover="background:#C28449">Аутсорсинг</button>
+    </div>
+    <div id="services-scroll" style="display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none">
+      <sc-for list="{{ services }}" as="item" hint-placeholder-count="7">
+        <div style="background:#fff;border-radius:8px;padding:0;min-height:280px;min-width:272px;max-width:272px;flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(12,56,57,0.12);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" style-hover="transform:translateY(-4px);box-shadow:0 14px 32px rgba(12,56,57,0.18)">
+          <div style="height:6px;background:#C28449"></div>
+          <div style="padding:30px 26px;display:flex;flex-direction:column;gap:14px;flex:1">
+            <div style="font-family:'Playfair Display',serif;font-size:21px;color:#0C3839;font-weight:600;line-height:1.3">{{ item.title }}</div>
+            <div style="font-size:15px;color:#2B585E;line-height:1.55">{{ item.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:24px">
+      <button onClick="{{ scrollServicesLeft }}" style="width:48px;height:48px;border-radius:50%;border:1px solid #2B585E;background:#0C3839;color:#BAD6DB;font-size:18px;cursor:pointer;transition:background 0.15s,color 0.15s" style-hover="background:#C28449;color:#0C3839;border-color:#C28449">←</button>
+      <button onClick="{{ scrollServicesRight }}" style="width:48px;height:48px;border-radius:50%;border:1px solid #2B585E;background:#0C3839;color:#BAD6DB;font-size:18px;cursor:pointer;transition:background 0.15s,color 0.15s" style-hover="background:#C28449;color:#0C3839;border-color:#C28449">→</button>
+    </div>
+  </section>
+
+  <section id="scenarios" class="section-pad" style="background:#0C3839;padding:100px 56px">
+    <div style="color:#C28449;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px">Сценарии</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#BAD6DB;margin:0 0 12px 0;font-weight:600">Для каких форматов подходим</h2>
+    <p style="font-size:17px;color:#BAD6DB;opacity:0.7;margin:0 0 48px 0;max-width:560px">Подбираем сервис и подачу под каждый тип мероприятия</p>
+    <div class="scenarios-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2B585E;border-radius:4px;overflow:hidden">
+      <sc-for list="{{ scenarios }}" as="item" hint-placeholder-count="4">
+        <div style="background:#0C3839;padding:36px 28px;min-height:200px;display:flex;flex-direction:column;gap:14px;transition:background 0.15s" style-hover="background:#12403f">
+          <div style="font-size:13px;font-weight:600;color:#C28449;text-transform:uppercase;letter-spacing:0.05em">{{ item.tag }}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:21px;color:#BAD6DB;font-weight:600;line-height:1.3">{{ item.title }}</div>
+          <div style="font-size:14px;color:#BAD6DB;opacity:0.7;line-height:1.55">{{ item.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section-pad" style="background:#BAD6DB;padding:100px 56px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#0C3839;margin:0 0 12px 0;font-weight:600">Отзывы клиентов</h2>
+    <p style="font-size:17px;color:#2B585E;margin:0 0 48px 0;max-width:560px">Что говорят организаторы и заведения после мероприятий</p>
+    <div class="testimonials-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <sc-for list="{{ testimonials }}" as="item" hint-placeholder-count="3">
+        <div style="background:#fff;border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:0 8px 24px rgba(12,56,57,0.1)">
+          <div style="color:#C28449;font-size:16px;letter-spacing:2px">★★★★★</div>
+          <div style="font-size:15px;color:#0C3839;line-height:1.6;flex:1">«{{ item.quote }}»</div>
+          <div style="display:flex;align-items:center;gap:12px;padding-top:8px;border-top:1px solid #BAD6DB">
+            <div style="width:40px;height:40px;border-radius:50%;background:#2B585E;color:#BAD6DB;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:0 0 auto">{{ item.initials }}</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#0C3839">{{ item.name }}</div>
+              <div style="font-size:13px;color:#2B585E;opacity:0.8">{{ item.role }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="advantages" class="section-pad" style="background:#2B585E;padding:100px 56px">
+    <div style="color:#C28449;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px">FAQ</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#BAD6DB;margin:0 0 16px 0;font-weight:600">Почему мы?</h2>
+    <p style="font-size:17px;color:#BAD6DB;opacity:0.7;margin:0 0 48px 0;max-width:560px">Отвечаем на главные вопросы перед началом сотрудничества</p>
+    <div style="max-width:820px;border-top:1px solid rgba(186,214,219,0.25)">
+      <sc-for list="{{ advantages }}" as="item" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid rgba(186,214,219,0.25)">
+          <button onClick="{{ item.onToggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;background:none;border:none;padding:24px 4px;cursor:pointer;text-align:left;transition:opacity 0.15s" style-hover="opacity:0.7">
+            <span style="font-size:19px;color:#BAD6DB;font-weight:600">{{ item.title }}</span>
+            <span style="font-size:22px;color:#C28449;font-weight:400;flex:0 0 auto;transition:transform 0.15s" style-hover="transform:scale(1.2)">{{ item.icon }}</span>
+          </button>
+          <sc-if value="{{ item.isOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 4px 24px 4px;font-size:15px;color:#BAD6DB;opacity:0.75;line-height:1.6;max-width:640px">{{ item.desc }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <a href="#contact" style="display:inline-block;margin-top:40px;border:1px solid #BAD6DB;color:#BAD6DB;padding:14px 32px;border-radius:24px;font-weight:600;font-size:15px;transition:background 0.15s,color 0.15s" style-hover="background:#BAD6DB;color:#0C3839">Связаться с нами</a>
+  </section>
+
+  <section id="calculator" class="section-pad" style="background:#0C3839;padding:100px 56px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#BAD6DB;margin:0 0 12px 0;font-weight:600">Калькулятор стоимости</h2>
+    <p style="font-size:17px;color:#BAD6DB;opacity:0.75;margin:0 0 48px 0;max-width:560px">Ориентировочный расчёт — стоимость зависит от сочетания количества кальянов и часов работы, точную сумму уточним после согласования деталей мероприятия</p>
+    <div class="calc-grid" style="background:#BAD6DB;border-radius:4px;padding:48px;display:grid;grid-template-columns:1fr 1fr auto;gap:48px;align-items:start">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+          <span style="font-size:14px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.05em">Количество кальянов</span>
+          <span style="font-family:'Playfair Display',serif;font-size:24px;color:#0C3839;font-weight:700">{{ hookahs }}</span>
+        </div>
+        <input type="range" min="2" max="15" step="1" value="{{ hookahs }}" onChange="{{ handleHookahsChange }}" style="width:100%;accent-color:#C28449"/>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+          <span style="font-size:14px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.05em">Часы работы</span>
+          <span style="font-family:'Playfair Display',serif;font-size:24px;color:#0C3839;font-weight:700">{{ hours }} ч</span>
+        </div>
+        <input type="range" min="1" max="8" step="1" value="{{ hours }}" onChange="{{ handleHoursChange }}" style="width:100%;accent-color:#C28449"/>
+      </div>
+      <div style="border-left:1px solid #2B585E;padding-left:48px;min-width:240px">
+        <div style="font-size:14px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px">Итого</div>
+        <div style="font-family:'Playfair Display',serif;font-size:44px;color:#0C3839;font-weight:700;margin-bottom:24px">{{ priceFormatted }} ₽</div>
+        <button onClick="{{ openModal }}" style="display:block;width:100%;text-align:center;background:#C28449;color:#0C3839;padding:14px;border-radius:10px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:background 0.15s" style-hover="background:#0C3839;color:#BAD6DB">Оставить заявку</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" class="section-pad" style="background:#BAD6DB;padding:100px 56px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#0C3839;margin:0;font-weight:600">Наши работы</h2>
+      <div style="display:flex;gap:8px">
+        <button onClick="{{ showPhotos }}" style="padding:10px 22px;border-radius:10px;border:1px solid #2B585E;font-size:14px;font-weight:600;cursor:pointer;background:{{ photoTabBg }};color:{{ photoTabColor }};transition:background 0.15s,color 0.15s" style-hover="background:#C28449;color:#0C3839;border-color:#C28449">Фото</button>
+        <button onClick="{{ showVideos }}" style="padding:10px 22px;border-radius:10px;border:1px solid #2B585E;font-size:14px;font-weight:600;cursor:pointer;background:{{ videoTabBg }};color:{{ videoTabColor }};transition:background 0.15s,color 0.15s" style-hover="background:#C28449;color:#0C3839;border-color:#C28449">Видео</button>
+      </div>
+    </div>
+    <sc-if value="{{ isPhotoTab }}" hint-placeholder-val="{{ true }}">
+      <div class="works-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+        <sc-for list="{{ photoSlots }}" as="item" hint-placeholder-count="6">
+          <div style="width:100%;height:260px;min-width:0;overflow:hidden">
+            <image-slot id="{{ item.id }}" shape="rounded" radius="2" placeholder="Фото с мероприятия" style="width:100%;height:100%;display:block"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isVideoTab }}" hint-placeholder-val="{{ false }}">
+      <div class="works-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+        <sc-for list="{{ videoSlots }}" as="item" hint-placeholder-count="3">
+          <div style="width:100%;height:260px;min-width:0;overflow:hidden;border-radius:2px;position:relative;background:repeating-linear-gradient(135deg,#24494e,#24494e 14px,#2B585E 14px,#2B585E 28px)">
+            <video src="{{ item.url }}" controls="{{ true }}" playsInline="{{ true }}" style="width:100%;height:100%;object-fit:cover;display:{{ item.videoDisplay }}"></video>
+            <label style="position:absolute;inset:0;display:{{ item.uploadDisplay }};align-items:center;justify-content:center;text-align:center;padding:16px;cursor:pointer">
+              <span style="font-family:monospace;font-size:12px;color:#BAD6DB;letter-spacing:0.02em;background:rgba(12,56,57,0.55);padding:8px 14px;border-radius:10px">загрузить видео</span>
+              <input type="file" accept="video/*" onChange="{{ item.onUpload }}" style="display:none"/>
+            </label>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="trust" class="section-pad" style="background:#2B585E;padding:100px 56px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#BAD6DB;margin:0 0 56px 0;font-weight:600">Нам доверяют</h2>
+    <div class="trust-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:64px">
+      <sc-for list="{{ stats }}" as="item" hint-placeholder-count="4">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:42px;color:#C28449;font-weight:700">{{ item.value }}</div>
+          <div style="font-size:15px;color:#BAD6DB;opacity:0.8;margin-top:6px">{{ item.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:14px;font-weight:600;color:#BAD6DB;opacity:0.7;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:24px">Нам доверяют организаторы и заведения</div>
+    <div style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)">
+      <div style="display:flex;gap:16px;width:max-content;animation:logos-scroll 24s linear infinite">
+        <sc-for list="{{ logoSlotsLoop }}" as="item" hint-placeholder-count="12">
+          <div style="width:180px;height:80px;flex:0 0 auto">
+            <image-slot id="{{ item.id }}" shape="rect" placeholder="Лого клиента" style="width:100%;height:100%"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-pad contact-grid" style="background:#0C3839;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px">
+    <div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#BAD6DB;margin:0 0 20px 0;font-weight:600">Оставьте заявку</h2>
+      <p style="font-size:17px;color:#BAD6DB;opacity:0.75;line-height:1.6;max-width:440px;margin:0 0 32px 0">Свяжемся в течение 15 минут, обсудим детали мероприятия и подберём формат под ваш бюджет</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="tel:+70000000000" style="color:#BAD6DB;font-size:18px;font-weight:600">+7 (000) 000-00-00</a>
+        <a href="#" style="color:#C28449;font-size:16px;transition:color 0.15s" style-hover="color:#BAD6DB">WhatsApp / Telegram</a>
+      </div>
+    </div>
+    <div style="background:#BAD6DB;border-radius:4px;padding:40px">
+      <sc-if value="{{ isSubmitted }}" hint-placeholder-val="{{ false }}">
+        <div style="height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px">
+          <div style="font-family:'Playfair Display',serif;font-size:26px;color:#0C3839;font-weight:600">Заявка принята</div>
+          <div style="font-size:15px;color:#2B585E">Мы свяжемся с вами в ближайшее время</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isNotSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:18px">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:8px">Имя</label>
+            <input type="text" value="{{ name }}" onChange="{{ handleNameChange }}" placeholder="Как вас зовут" required="true" style="width:100%;padding:14px;border:1px solid #2B585E;border-radius:10px;font-size:15px;background:#fff;color:#0C3839;box-sizing:border-box"/>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:8px">Телефон</label>
+            <input type="tel" value="{{ phone }}" onChange="{{ handlePhoneChange }}" placeholder="+7 (___) ___-__-__" required="true" style="width:100%;padding:14px;border:1px solid #2B585E;border-radius:10px;font-size:15px;background:#fff;color:#0C3839;box-sizing:border-box"/>
+          </div>
+          <button type="submit" style="margin-top:8px;background:#C28449;color:#0C3839;padding:16px;border:none;border-radius:10px;font-weight:600;font-size:16px;cursor:pointer;transition:background 0.15s" style-hover="background:#0C3839;color:#BAD6DB">Заказать звонок</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <sc-if value="{{ isModalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(12,56,57,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div onClick="{{ stopPropagation }}" style="background:#BAD6DB;border-radius:4px;padding:40px;max-width:440px;width:100%;position:relative">
+        <button onClick="{{ closeModal }}" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;color:#2B585E;cursor:pointer;line-height:1" style-hover="color:#0C3839">×</button>
+        <sc-if value="{{ isModalSubmitted }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:8px">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;color:#0C3839;font-weight:600">Заявка принята</div>
+            <div style="font-size:15px;color:#2B585E">Мы свяжемся с вами в ближайшее время</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isModalNotSubmitted }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:24px;color:#0C3839;font-weight:600;margin-bottom:6px">Оставьте заявку</div>
+            <div style="font-size:14px;color:#2B585E;margin-bottom:24px">Расчёт: {{ hookahs }} кальянов, {{ hours }} ч — {{ calcPrice }} ₽</div>
+            <form onSubmit="{{ handleModalSubmit }}" style="display:flex;flex-direction:column;gap:18px">
+              <div>
+                <label style="font-size:13px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:8px">Имя</label>
+                <input type="text" value="{{ modalName }}" onChange="{{ handleModalNameChange }}" placeholder="Как вас зовут" required="true" style="width:100%;padding:14px;border:1px solid #2B585E;border-radius:10px;font-size:15px;background:#fff;color:#0C3839;box-sizing:border-box"/>
+              </div>
+              <div>
+                <label style="font-size:13px;font-weight:600;color:#0C3839;text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:8px">Телефон</label>
+                <input type="tel" value="{{ modalPhone }}" onChange="{{ handleModalPhoneChange }}" placeholder="+7 (___) ___-__-__" required="true" style="width:100%;padding:14px;border:1px solid #2B585E;border-radius:10px;font-size:15px;background:#fff;color:#0C3839;box-sizing:border-box"/>
+              </div>
+              <button type="submit" style="margin-top:8px;background:#C28449;color:#0C3839;padding:16px;border:none;border-radius:10px;font-weight:600;font-size:16px;cursor:pointer;transition:background 0.15s" style-hover="background:#0C3839;color:#BAD6DB">Отправить заявку</button>
+            </form>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <footer class="site-footer" style="background:#0C3839;border-top:1px solid #2B585E;padding:32px 56px;display:flex;align-items:center;justify-content:space-between">
+    <img src="assets/logo.png" alt="HPE" style="height:32px;width:auto"/>
+    <div style="font-size:14px;color:#BAD6DB;opacity:0.6">© 2026 HPE. Кальянный кейтеринг и аутсорсинг</div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    hookahs: 4,
+    hours: 3,
+    name: '',
+    phone: '',
+    submitted: false,
+    worksTab: 'photo',
+    openFaqs: { 0: true },
+    modalOpen: false,
+    modalName: '',
+    modalPhone: '',
+    modalSubmitted: false,
+    servicesTab: 'catering',
+    videoUrls: {}
+  };
+
+  handleVideoUpload(id, e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    this.setState(s => ({ videoUrls: Object.assign({}, s.videoUrls, { [id]: url }) }));
+  }
+
+  setHookahs(v) { this.setState({ hookahs: v }); }
+  setHours(v) { this.setState({ hours: v }); }
+
+  renderVals() {
+    const servicesAll = [
+      { num: '01', dir: 'catering', title: 'Кальянный кейтеринг', desc: 'На любой формат мероприятия — от дня рождения до крупного корпоратива' },
+      { num: '02', dir: 'catering', title: 'Мастер-классы', desc: 'Обучаем гостей и сотрудников искусству курения кальяна' },
+      { num: '03', dir: 'catering', title: 'Каскадное курение', desc: 'Эффектное шоу с цветным дымом для ярких мероприятий' },
+      { num: '04', dir: 'catering', title: "Chief's table", desc: 'Индивидуальная подача и сервис для избранных гостей' },
+      { num: '05', dir: 'catering', title: 'Аренда оборудования', desc: 'Кальяны, чаши, аксессуары в аренду с доставкой' },
+      { num: '06', dir: 'outsourcing', title: 'Аутсорсинг под ключ', desc: 'Берём кальянное направление бара или ресторана на себя: персонал, оборудование, табак' },
+      { num: '07', dir: 'outsourcing', title: 'Аутстафф персонала', desc: 'Предоставляем опытных кальянщиков в штат заведения' }
+    ];
+    const isCateringTab = this.state.servicesTab !== 'outsourcing';
+    const services = servicesAll.filter(s => s.dir === (isCateringTab ? 'catering' : 'outsourcing'));
+
+    const scenarios = [
+      { tag: 'Частный праздник', title: 'Свадьбы и дни рождения', desc: 'Красивая подача и атмосфера для гостей праздника' },
+      { tag: 'Бизнес', title: 'Корпоративы и event-агентства', desc: 'Работа по договору, чёткое расписание, безнал' },
+      { tag: 'Заведение', title: 'Рестораны и бары', desc: 'Аутсорсинг кальянного направления под ключ' },
+      { tag: 'Пространство', title: 'Лофты', desc: 'Компактная расстановка и быстрый выезд бригады' }
+    ];
+
+    const testimonials = [
+      { quote: 'Приехали быстро, всё было чисто и вкусно. Гости до сих пор вспоминают вечер.', initials: 'ЕК', name: 'Елена К.', role: 'Организатор свадеб' },
+      { quote: 'Взяли на аутсорс кальянное направление бара — прибыль выросла, а нам не нужно держать штат.', initials: 'ДС', name: 'Дмитрий С.', role: 'Владелец бара' },
+      { quote: 'Работаем по договору уже второй год, всегда чётко по времени и без нареканий.', initials: 'МА', name: 'Марина А.', role: 'Event-агентство' }
+    ];
+
+    const faqData = [
+      { title: 'Как быстро вы выезжаете?', desc: 'В течение 60 минут после подтверждения заявки в пределах города' },
+      { title: 'Работаете ли с организациями?', desc: 'Да, оформляем официальный договор и безналичный расчёт' },
+      { title: 'Кто обслуживает мероприятие?', desc: 'Команда кальянщиков с опытом от 3 лет на крупных площадках' },
+      { title: 'Какой табак вы используете?', desc: 'Только проверенные премиальные бренды и чистая посуда каждый раз' },
+      { title: 'Для каких мероприятий подходите?', desc: 'От камерного дня рождения до корпоратива на 500+ гостей' },
+      { title: 'Что входит в услугу?', desc: 'Полное сопровождение — от расчёта стоимости до уборки после мероприятия' }
+    ];
+    const advantages = faqData.map((item, i) => {
+      const isOpen = !!this.state.openFaqs[i];
+      return {
+        title: item.title,
+        desc: item.desc,
+        isOpen,
+        icon: isOpen ? '−' : '+',
+        onToggle: () => {
+          const next = Object.assign({}, this.state.openFaqs);
+          if (isOpen) { delete next[i]; } else { next[i] = true; }
+          this.setState({ openFaqs: next });
+        }
+      };
+    });
+
+    const stats = [
+      { value: '5 лет', label: 'на рынке' },
+      { value: '500+', label: 'мероприятий проведено' },
+      { value: '30+', label: 'кальянщиков в команде' },
+      { value: '23 мин', label: 'самый быстрый выезд' }
+    ];
+
+    const hookahValues = [2, 4, 6, 8, 10, 15];
+    const hourValues = [1, 2, 3, 4, 6, 8];
+
+    const hookahOptions = hookahValues.map(v => ({
+      label: String(v),
+      onClick: () => this.setHookahs(v)
+    }));
+    const hourOptions = hourValues.map(v => ({
+      label: String(v) + ' ч',
+      onClick: () => this.setHours(v)
+    }));
+
+    const price = this.state.hookahs * this.state.hours * 900 + 3000;
+
+    const photoSlots = [1, 2, 3, 4, 5, 6].map(n => ({ id: 'work-photo-' + n }));
+    const videoSlots = [1, 2, 3].map(n => {
+      const id = 'work-video-' + n;
+      const url = this.state.videoUrls[id];
+      return {
+        id,
+        url: url || undefined,
+        videoDisplay: url ? 'block' : 'none',
+        uploadDisplay: url ? 'none' : 'flex',
+        onUpload: (e) => this.handleVideoUpload(id, e)
+      };
+    });
+    const heroVideoUrl = this.state.videoUrls['hero-video'];
+    const onHeroVideoUpload = (e) => this.handleVideoUpload('hero-video', e);
+    const logoSlots = [1, 2, 3, 4, 5, 6].map(n => ({ id: 'client-logo-' + n }));
+    const logoSlotsLoop = logoSlots.concat(logoSlots);
+
+    const isPhotoTab = this.state.worksTab === 'photo';
+
+    return {
+      services,
+      isCateringTab,
+      isOutsourcingTab: !isCateringTab,
+      showCateringTab: () => this.setState({ servicesTab: 'catering' }),
+      showOutsourcingTab: () => this.setState({ servicesTab: 'outsourcing' }),
+      cateringTabBg: isCateringTab ? '#C28449' : '#fff',
+      outsourcingTabBg: !isCateringTab ? '#C28449' : '#fff',
+      scenarios,
+      testimonials,
+      advantages,
+      stats,
+      hookahOptions,
+      hourOptions,
+      priceFormatted: price.toLocaleString('ru-RU'),
+      photoSlots,
+      videoSlots,
+      heroVideoUrl: heroVideoUrl || undefined,
+      heroVideoDisplay: heroVideoUrl ? 'block' : 'none',
+      heroUploadDisplay: heroVideoUrl ? 'none' : 'flex',
+      onHeroVideoUpload,
+      logoSlots,
+      logoSlotsLoop,
+      hookahs: this.state.hookahs,
+      hours: this.state.hours,
+      handleHookahsChange: (e) => this.setHookahs(Number(e.target.value)),
+      handleHoursChange: (e) => this.setHours(Number(e.target.value)),
+      scrollServicesLeft: () => {
+        const el = document.getElementById('services-scroll');
+        if (!el) return;
+        if (el.scrollLeft <= 0) { el.scrollTo({ left: el.scrollWidth, behavior: 'auto' }); }
+        el.scrollBy({ left: -292, behavior: 'smooth' });
+      },
+      scrollServicesRight: () => {
+        const el = document.getElementById('services-scroll');
+        if (!el) return;
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) { el.scrollTo({ left: 0, behavior: 'auto' }); }
+        el.scrollBy({ left: 292, behavior: 'smooth' });
+      },
+      isPhotoTab,
+      isVideoTab: !isPhotoTab,
+      showPhotos: () => this.setState({ worksTab: 'photo' }),
+      showVideos: () => this.setState({ worksTab: 'video' }),
+      photoTabBg: isPhotoTab ? '#C28449' : '#BAD6DB',
+      photoTabColor: isPhotoTab ? '#0C3839' : '#0C3839',
+      videoTabBg: !isPhotoTab ? '#C28449' : '#BAD6DB',
+      videoTabColor: '#0C3839',
+      name: this.state.name,
+      phone: this.state.phone,
+      handleNameChange: (e) => this.setState({ name: e.target.value }),
+      handlePhoneChange: (e) => this.setState({ phone: e.target.value }),
+      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      isSubmitted: this.state.submitted,
+      isNotSubmitted: !this.state.submitted,
+      calcPrice: price.toLocaleString('ru-RU'),
+      isModalOpen: this.state.modalOpen,
+      openModal: () => this.setState({ modalOpen: true, modalSubmitted: false, modalName: '', modalPhone: '' }),
+      closeModal: () => this.setState({ modalOpen: false }),
+      stopPropagation: (e) => e.stopPropagation(),
+      modalName: this.state.modalName,
+      modalPhone: this.state.modalPhone,
+      handleModalNameChange: (e) => this.setState({ modalName: e.target.value }),
+      handleModalPhoneChange: (e) => this.setState({ modalPhone: e.target.value }),
+      handleModalSubmit: (e) => { e.preventDefault(); this.setState({ modalSubmitted: true }); },
+      isModalSubmitted: this.state.modalSubmitted,
+      isModalNotSubmitted: !this.state.modalSubmitted
+    };
+  }
+}
+
+</script>
+</body>
+</html>
