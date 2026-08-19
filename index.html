@@ -204,7 +204,11 @@
       </div>
       <div style="background:var(--card);border:1px solid var(--line);border-radius:6px;padding:40px;display:flex;flex-direction:column;gap:18px">
         <div style="font-size:15px;color:var(--faint)">Ориентировочно</div>
-        <div style="font-family:'Spectral',serif;font-size:clamp(44px,5vw,62px);line-height:1;font-weight:400;font-variant-numeric:tabular-nums">{{ priceFormatted }} ₽</div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+          <div style="font-family:'Spectral',serif;font-size:clamp(44px,5vw,62px);line-height:1;font-weight:400;font-variant-numeric:tabular-nums">{{ priceFormatted }} ₽</div>
+          <div style="font-size:20px;line-height:1;color:var(--faint);text-decoration:line-through;font-variant-numeric:tabular-nums">{{ basePriceFormatted }} ₽</div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;width:fit-content">−15% при заявке через сайт</div>
         <div style="font-size:16px;line-height:1.6;color:var(--muted);font-weight:300">{{ volumeNote }}</div>
         <button onClick="{{ openModal }}" style="margin-top:8px;min-height:52px;background:var(--ink);color:var(--bg);border:none;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,color .2s" style-hover="background:var(--accent);color:var(--on-accent)">Зафиксировать расчёт</button>
       </div>
@@ -408,22 +412,14 @@ class Component extends DCLogic {
     this.setState(s => ({ videoUrls: Object.assign({}, s.videoUrls, { [id]: url }) }));
   }
 
-  rate(volume) {
-    if (volume < 12) return 1250;
-    if (volume < 30) return 1080;
-    if (volume < 60) return 940;
-    return 820;
-  }
-
   renderVals() {
     const st = this.state;
     const theme = st.theme || this.props.theme || 'light';
     const isDark = theme === 'dark';
     const volume = st.hookahs * st.hours;
-    const base = this.props.baseRate ?? 1250;
-    const rate = Math.round(this.rate(volume) * base / 1250);
-    const arrival = this.props.arrivalFee ?? 4000;
-    const price = volume * rate + arrival;
+    // Цена = 1250 ₽ за час на каждый кальян + 1250 ₽/час за работу мастера + 2500 ₽ выезд
+    const basePrice = 1250 * st.hours * (st.hookahs + 1) + 2500;
+    const price = Math.round(basePrice * 0.85);
     const fmt = n => n.toLocaleString('ru-RU');
 
     const note = 'В стоимость входит оборудование, табак, работа мастеров и уборка зоны. Точную смету согласуем после уточнения деталей.';
@@ -512,6 +508,7 @@ class Component extends DCLogic {
       onHookahs: e => this.setState({ hookahs: Number(e.target.value) }),
       onHours: e => this.setState({ hours: Number(e.target.value) }),
       priceFormatted: fmt(price),
+      basePriceFormatted: fmt(basePrice),
       volumeNote: note,
       photoSlots, videoSlots,
       isPhotoTab: isPhoto, isVideoTab: !isPhoto,
