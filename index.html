@@ -68,8 +68,8 @@
         <div style="font-size:15px;font-weight:500;margin-bottom:4px">Необходимые</div>
         <div style="font-size:13px;color:#6B8384;font-weight:300;line-height:1.5">Базовая работа сайта и сохранение выбора cookie-настроек.</div>
       </div>
-      <span style="flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:#A9662F;position:relative;margin-top:2px">
-        <span style="position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#FBF7F1;display:block"></span>
+      <span title="Всегда включено" style="flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:rgba(169,102,47,0.4);position:relative;margin-top:2px;cursor:default">
+        <span style="position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#FBF7F1;opacity:0.85;display:block"></span>
       </span>
     </div>
 
@@ -197,10 +197,28 @@
       .a-foot-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
     }
     @media (max-width:820px) {
-      .a-pad { padding:64px 20px !important; }
+      .a-pad { padding:48px 20px !important; }
       .a-head { padding:14px 20px !important; }
       .a-nav { display:none !important; }
-      .a-gal, .a-stats, .a-scen { grid-template-columns:minmax(0,1fr) !important; }
+      .a-stats, .a-scen { grid-template-columns:minmax(0,1fr) !important; }
+      .a-gal {
+        display:flex !important;
+        overflow-x:auto !important;
+        overflow-y:hidden !important;
+        scroll-snap-type:x mandatory !important;
+        -webkit-overflow-scrolling:touch !important;
+        gap:12px !important;
+        padding-bottom:6px !important;
+        margin:0 -20px !important;
+        padding-left:20px !important;
+        padding-right:20px !important;
+      }
+      .a-gal::-webkit-scrollbar { display:none; }
+      .a-gal > * {
+        flex:0 0 auto !important;
+        width:78vw !important;
+        scroll-snap-align:center !important;
+      }
       .a-row { flex-direction:column !important; align-items:flex-start !important; gap:14px !important; }
       .a-foot { flex-direction:column !important; gap:14px !important; }
       .a-foot-grid { grid-template-columns:minmax(0,1fr) !important; gap:40px !important; }
@@ -229,7 +247,7 @@
     </div>
   </header>
 
-  <section class="a-pad" style="padding:84px 60px 0 60px">
+  <section class="a-pad" style="padding:64px 60px 0 60px">
     <div style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:26px">Кальянный кейтеринг и аутсорсинг в Москве и области</div>
     <h1 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(40px,7vw,104px);line-height:1.03;letter-spacing:-0.015em;margin:0;max-width:18ch">Кальяны на ваше мероприятие — под ключ</h1>
     <div class="a-row" style="display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-top:40px;flex-wrap:wrap">
@@ -259,7 +277,7 @@
     </div>
   </section>
 
-  <section id="directions" class="a-pad" style="padding:96px 60px">
+  <section id="directions" class="a-pad" style="padding:72px 60px">
     <div style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Два направления</div>
     <h2 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.12;margin:0 0 52px 0;max-width:24ch">Событие или постоянное сотрудничество</h2>
     <div class="a-split" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
@@ -292,7 +310,7 @@
     </div>
   </section>
 
-  <section class="a-pad" style="padding:0 60px 96px 60px">
+  <section class="a-pad" style="padding:0 60px 72px 60px">
     <div class="a-row" style="display:flex;align-items:baseline;justify-content:space-between;gap:40px;margin-bottom:44px">
       <h2 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.12;margin:0;max-width:22ch">Для каких мероприятий нас зовут</h2>
       <p style="font-size:17px;line-height:1.6;color:var(--muted);font-weight:300;max-width:44ch;margin:0">Индивидуальное кальянное меню, количество мастеров и премиальное оборудование — под каждый повод.</p>
@@ -307,7 +325,7 @@
     </div>
   </section>
 
-  <section id="works" style="padding:0 0 96px 0">
+  <section id="works" style="padding:0 0 72px 0">
     <div class="a-pad" style="padding:0 60px 36px 60px">
       <div class="a-row" style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px">
         <h2 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.12;margin:0">Работы</h2>
@@ -341,7 +359,7 @@
     </sc-if>
   </section>
 
-  <section id="calc" class="a-pad" style="padding:96px 60px;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <section id="calc" class="a-pad" style="padding:72px 60px;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
     <div style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Кальякулятор</div>
     <h2 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.12;margin:0 0 14px 0">Стоимость кальянного кейтеринга</h2>
     <p style="font-size:18px;line-height:1.6;color:var(--muted);font-weight:300;margin:0 0 52px 0;max-width:60ch">Исходя из количества кальянов и количества часов работы формируется стоимость мероприятия.</p>
@@ -371,11 +389,12 @@
         <div style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;width:fit-content">−15% при заявке через сайт</div>
         <div style="font-size:16px;line-height:1.6;color:var(--muted);font-weight:300">{{ volumeNote }}</div>
         <button onClick="{{ openModal }}" style="margin-top:8px;min-height:52px;background:var(--ink);color:var(--bg);border:none;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,color .2s" style-hover="background:var(--accent);color:var(--on-accent)">Зафиксировать расчёт</button>
+        <button onClick="{{ openCallback }}" style="background:none;border:none;padding:0;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--faint);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:3px" style-hover="color:var(--accent)">Нужен другой объём или формат — оставьте заявку, посчитаем индивидуально</button>
       </div>
     </div>
   </section>
 
-  <section class="a-pad" style="padding:96px 60px">
+  <section class="a-pad" style="padding:72px 60px">
     <div style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Отзывы</div>
     <h2 style="font-family:'Spectral',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.12;margin:0 0 44px 0;max-width:26ch">Что говорят после мероприятий</h2>
     <div style="max-width:64ch;border-top:1px solid var(--line);padding-top:44px">
@@ -384,17 +403,20 @@
         <span style="font-size:15px;font-weight:500;color:var(--ink)">{{ activeQuote.name }}</span>
         <span style="font-size:15px;color:var(--faint)">{{ activeQuote.role }}</span>
       </div>
-      <div style="display:flex;gap:10px;margin-top:28px">
-        <sc-for list="{{ quoteDots }}" as="q" hint-placeholder-count="3">
-          <button onClick="{{ q.onClick }}" aria-label="Отзыв" style="width:44px;height:44px;border:none;padding:0;cursor:pointer;background:none;display:flex;align-items:center;justify-content:center">
-            <span style="display:block;width:38px;height:2px;background:{{ q.bg }};transition:background .2s"></span>
-          </button>
-        </sc-for>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:28px">
+        <span style="font-size:13px;color:var(--faint)">Ещё отзывы</span>
+        <div style="display:flex;gap:4px">
+          <sc-for list="{{ quoteDots }}" as="q" hint-placeholder-count="3">
+            <button onClick="{{ q.onClick }}" aria-label="Показать отзыв" style="width:32px;height:32px;border:none;padding:0;cursor:pointer;background:none;display:flex;align-items:center;justify-content:center">
+              <span style="display:block;border-radius:50%;width:{{ q.size }};height:{{ q.size }};background:{{ q.bg }};transition:background .2s,width .2s,height .2s"></span>
+            </button>
+          </sc-for>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="faq" class="a-pad" style="padding:0 60px 96px 60px">
+  <section id="faq" class="a-pad" style="padding:0 60px 72px 60px">
     <div class="a-split" style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:start">
       <div>
         <div style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Почему мы</div>
@@ -418,7 +440,7 @@
     </div>
   </section>
 
-  <section id="contact" class="a-pad a-split" style="padding:96px 60px;display:grid;grid-template-columns:1fr 1.05fr;gap:64px;background:var(--panel);border-top:1px solid var(--line)">
+  <section id="contact" class="a-pad a-split" style="padding:72px 60px;display:grid;grid-template-columns:1fr 1.05fr;gap:64px;background:var(--panel);border-top:1px solid var(--line)">
     <div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
         <span style="display:block;width:38px;height:1px;background:var(--accent)"></span>
@@ -455,7 +477,7 @@
         </div>
         <div>
           <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Телефон</label>
-          <input type="tel" value="{{ reqPhone }}" onChange="{{ onReqPhone }}" placeholder="+7 (___) ___-__-__" required="{{ true }}" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
+          <input type="tel" inputmode="tel" maxlength="{{ 18 }}" value="{{ reqPhone }}" onChange="{{ onReqPhone }}" placeholder="+7 (___) ___-__-__" required="{{ true }}" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div>
@@ -513,7 +535,7 @@
         <div style="font-size:16px;line-height:1.55;color:var(--muted);font-weight:300;margin-bottom:26px">{{ modalSummary }}</div>
         <form onSubmit="{{ onModalSubmit }}" style="display:flex;flex-direction:column;gap:22px">
           <input type="text" value="{{ modalName }}" onChange="{{ onModalName }}" placeholder="Имя" required="{{ true }}" style="width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 0;font-family:'DM Sans',sans-serif;font-size:18px;color:var(--ink);outline:none;box-sizing:border-box"/>
-          <input type="tel" value="{{ modalPhone }}" onChange="{{ onModalPhone }}" placeholder="Телефон" required="{{ true }}" style="width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 0;font-family:'DM Sans',sans-serif;font-size:18px;color:var(--ink);outline:none;box-sizing:border-box"/>
+          <input type="tel" inputmode="tel" maxlength="{{ 18 }}" value="{{ modalPhone }}" onChange="{{ onModalPhone }}" placeholder="Телефон" required="{{ true }}" style="width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 0;font-family:'DM Sans',sans-serif;font-size:18px;color:var(--ink);outline:none;box-sizing:border-box"/>
           <button type="submit" style="margin-top:8px;min-height:52px;background:var(--ink);color:var(--bg);border:none;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,color .2s" style-hover="background:var(--accent);color:var(--on-accent)">Отправить</button>
         </form>
       </div>
@@ -592,6 +614,23 @@
 })();
 </script>
 <script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Оформление&quot;},&quot;baseRate&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1250,&quot;min&quot;:600,&quot;max&quot;:2500,&quot;step&quot;:50,&quot;unit&quot;:&quot;₽&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Калькулятор&quot;},&quot;arrivalFee&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4000,&quot;min&quot;:0,&quot;max&quot;:15000,&quot;step&quot;:500,&quot;unit&quot;:&quot;₽&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Калькулятор&quot;}}">
+function formatPhoneRU(raw) {
+  let digits = (raw || '').replace(/\D/g, '');
+  if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+  else if (digits.startsWith('9')) digits = '7' + digits;
+  else if (!digits.startsWith('7') && digits.length > 0) digits = '7' + digits;
+  digits = digits.slice(0, 11);
+  if (!digits) return '';
+  let out = '+7';
+  const rest = digits.slice(1);
+  if (rest.length > 0) out += ' (' + rest.slice(0, 3);
+  if (rest.length >= 3) out += ')';
+  if (rest.length > 3) out += ' ' + rest.slice(3, 6);
+  if (rest.length > 6) out += '-' + rest.slice(6, 8);
+  if (rest.length > 8) out += '-' + rest.slice(8, 10);
+  return out;
+}
+
 class Component extends DCLogic {
   state = {
     theme: null,
@@ -727,6 +766,7 @@ class Component extends DCLogic {
     ];
     const quoteDots = quotes.map((q, i) => ({
       bg: st.quote === i ? 'var(--accent)' : 'var(--line)',
+      size: st.quote === i ? '10px' : '7px',
       onClick: () => this.setState({ quote: i })
     }));
 
@@ -783,7 +823,7 @@ class Component extends DCLogic {
       reqDate: st.reqDate, reqCity: st.reqCity, reqPhone: st.reqPhone, reqGuests: st.reqGuests, reqDetails: st.reqDetails,
       onReqDate: e => this.setState({ reqDate: e.target.value }),
       onReqCity: e => this.setState({ reqCity: e.target.value }),
-      onReqPhone: e => this.setState({ reqPhone: e.target.value }),
+      onReqPhone: e => this.setState({ reqPhone: formatPhoneRU(e.target.value) }),
       onReqGuests: e => this.setState({ reqGuests: e.target.value }),
       onReqDetails: e => this.setState({ reqDetails: e.target.value }),
       cityOptions: ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург', 'Казань', 'Нижний Новгород', 'Челябинск', 'Красноярск', 'Самара', 'Уфа', 'Ростов-на-Дону', 'Краснодар', 'Сочи'],
@@ -834,7 +874,7 @@ class Component extends DCLogic {
           : 'Оставьте номер — уточним детали и рассчитаем мероприятие.',
       modalName: st.modalName, modalPhone: st.modalPhone,
       onModalName: e => this.setState({ modalName: e.target.value }),
-      onModalPhone: e => this.setState({ modalPhone: e.target.value }),
+      onModalPhone: e => this.setState({ modalPhone: formatPhoneRU(e.target.value) }),
       onModalSubmit: e => {
         e.preventDefault();
         const src = st.modalKind === 'callback' ? 'Заявка с сайта (Перезвонить)' : st.modalKind === 'question' ? 'Заявка с сайта (Задать вопрос)' : 'Заявка с сайта (модалка расчёта)';
