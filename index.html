@@ -12,7 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <script src="./image-slot.js"></script>
   <style>
+    html { scroll-behavior:smooth; }
     body { margin:0; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    @media (prefers-reduced-motion: no-preference) {
+      .doc > section, .doc > footer { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+      .doc > section.is-visible, .doc > footer.is-visible { opacity:1; transform:none; }
+    }
     .doc {
       --bg:#F1EBE1; --panel:#E4DACB; --card:#FBF7F1;
       --ink:#0A2F30; --muted:#3D5D5E; --faint:#6B8384;
@@ -59,6 +64,7 @@
       <a href="#works" style="color:var(--ink);font-size:14px;letter-spacing:0.06em">Работы</a>
       <a href="#calc" style="color:var(--ink);font-size:14px;letter-spacing:0.06em">Расчёт</a>
       <a href="#faq" style="color:var(--ink);font-size:14px;letter-spacing:0.06em">Вопросы</a>
+      <a href="#contact" style="color:var(--ink);font-size:14px;letter-spacing:0.06em">Контакты</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px">
       <button onClick="{{ toggleTheme }}" title="Сменить тему" style="display:flex;align-items:center;gap:8px;min-height:44px;background:none;border:1px solid var(--line);color:var(--muted);padding:0 16px;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:border-color .2s,color .2s" style-hover="border-color:var(--accent);color:var(--ink)">
@@ -271,13 +277,15 @@
           <span style="font-size:14px;color:var(--faint)">Телефон</span>
           <span style="font-size:17px;font-weight:500">+7 (916) 147-38-75</span>
         </a>
-        <a href="https://t.me/" style="display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--ink);transition:border-color .2s,background .2s" style-hover="border-color:var(--accent);background:var(--card)">
+        <a href="https://t.me/hpemanager" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--ink);transition:border-color .2s,background .2s" style-hover="border-color:var(--accent);background:var(--card)">
           <span style="font-size:14px;color:var(--faint)">Telegram</span>
           <span style="font-size:17px;font-weight:500">Написать в Telegram</span>
+          <span style="font-size:14px;color:var(--muted)">@hpemanager</span>
         </a>
-        <a href="https://wa.me/79161473875" style="display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--ink);transition:border-color .2s,background .2s" style-hover="border-color:var(--accent);background:var(--card)">
+        <a href="https://wa.me/79161473875" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--ink);transition:border-color .2s,background .2s" style-hover="border-color:var(--accent);background:var(--card)">
           <span style="font-size:14px;color:var(--faint)">WhatsApp</span>
           <span style="font-size:17px;font-weight:500">Написать в WhatsApp</span>
+          <span style="font-size:14px;color:var(--muted)">+7 (916) 147-38-75</span>
         </a>
       </div>
     </div>
@@ -292,8 +300,23 @@
           <input type="text" value="{{ name }}" onChange="{{ onName }}" placeholder="Имя" required="{{ true }}" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
         </div>
         <div>
-          <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Дата и город</label>
-          <input type="text" value="{{ reqDate }}" onChange="{{ onReqDate }}" placeholder="Напр. 14 сентября, Москва" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
+          <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Телефон</label>
+          <input type="tel" value="{{ reqPhone }}" onChange="{{ onReqPhone }}" placeholder="+7 (___) ___-__-__" required="{{ true }}" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Дата события</label>
+            <input type="date" value="{{ reqDate }}" onChange="{{ onReqDate }}" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Город</label>
+            <input type="text" list="city-options" value="{{ reqCity }}" onChange="{{ onReqCity }}" placeholder="Напр. Москва" style="width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);outline:none;box-sizing:border-box"/>
+            <datalist id="city-options">
+              <sc-for list="{{ cityOptions }}" as="c" hint-placeholder-count="10">
+                <option value="{{ c }}"></option>
+              </sc-for>
+            </datalist>
+          </div>
         </div>
         <div>
           <label style="display:block;font-size:14px;color:var(--muted);margin-bottom:6px">Сколько гостей</label>
@@ -366,7 +389,7 @@
         <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Контакты</div>
         <div style="display:flex;flex-direction:column;gap:14px">
           <a href="tel:+79161473875" style="font-size:17px;color:var(--ink)">+7 (916) 147-38-75</a>
-          <a href="https://t.me/" style="font-size:17px;color:var(--ink)">Telegram</a>
+          <a href="https://t.me/hpemanager" style="font-size:17px;color:var(--ink)">Telegram</a>
           <a href="https://wa.me/79161473875" style="font-size:17px;color:var(--ink)">WhatsApp</a>
           <span style="font-size:17px;line-height:1.55;color:var(--muted);font-weight:300">Москва и область</span>
           <span style="font-size:17px;color:var(--accent)">Круглосуточно, 24/7</span>
@@ -400,10 +423,33 @@ class Component extends DCLogic {
     openFaqs: { 0: true },
     quote: 0,
     name: '', phone: '', inlineDone: false,
-    reqDate: '', reqGuests: '', reqDetails: '', channel: 'WhatsApp', consent: false,
+    reqDate: '', reqCity: '', reqPhone: '', reqGuests: '', reqDetails: '', channel: 'WhatsApp', consent: false,
     modalOpen: false, modalKind: 'calc', modalName: '', modalPhone: '', modalDone: false,
     videoUrls: {}
   };
+
+  componentDidMount() {
+    if (super.componentDidMount) super.componentDidMount();
+    if (typeof IntersectionObserver === 'undefined') return;
+    const reveal = () => {
+      const els = document.querySelectorAll('.doc > section, .doc > footer');
+      if (!els.length) return false;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(el => io.observe(el));
+      return true;
+    };
+    if (!reveal()) {
+      const t = setInterval(() => { if (reveal()) clearInterval(t); }, 150);
+      setTimeout(() => clearInterval(t), 5000);
+    }
+  }
 
   upload(id, e) {
     const f = e.target.files && e.target.files[0];
@@ -528,10 +574,13 @@ class Component extends DCLogic {
       name: st.name, phone: st.phone,
       onName: e => this.setState({ name: e.target.value }),
       onPhone: e => this.setState({ phone: e.target.value }),
-      reqDate: st.reqDate, reqGuests: st.reqGuests, reqDetails: st.reqDetails,
+      reqDate: st.reqDate, reqCity: st.reqCity, reqPhone: st.reqPhone, reqGuests: st.reqGuests, reqDetails: st.reqDetails,
       onReqDate: e => this.setState({ reqDate: e.target.value }),
+      onReqCity: e => this.setState({ reqCity: e.target.value }),
+      onReqPhone: e => this.setState({ reqPhone: e.target.value }),
       onReqGuests: e => this.setState({ reqGuests: e.target.value }),
       onReqDetails: e => this.setState({ reqDetails: e.target.value }),
+      cityOptions: ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург', 'Казань', 'Нижний Новгород', 'Челябинск', 'Красноярск', 'Самара', 'Уфа', 'Ростов-на-Дону', 'Краснодар', 'Сочи'],
       consent: st.consent,
       onConsent: e => this.setState({ consent: e.target.checked }),
       channels: ['WhatsApp', 'Telegram', 'Звонок'].map(label => ({
@@ -540,7 +589,7 @@ class Component extends DCLogic {
         onClick: () => this.setState({ channel: label })
       })),
       socials: [
-        { label: 'Telegram', href: 'https://t.me/' },
+        { label: 'Telegram', href: 'https://t.me/hpemanager' },
         { label: 'WhatsApp', href: 'https://wa.me/79161473875' },
         { label: 'ВКонтакте', href: '#' },
         { label: 'YouTube', href: '#' }
