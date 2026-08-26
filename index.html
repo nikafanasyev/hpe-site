@@ -526,7 +526,7 @@
         <div aria-label="HPE" role="img" style="height:52px;width:25px;background:var(--ink);-webkit-mask:url(assets/logo.svg) center/contain no-repeat;mask:url(assets/logo.svg) center/contain no-repeat"></div>
         <p style="font-size:16px;line-height:1.65;color:var(--muted);font-weight:300;margin:22px 0 24px 0;max-width:36ch">Кальянный кейтеринг и аутсорсинг. Выезд на мероприятия и работа в заведениях.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3">
             <a href="{{ s.href }}" style="display:inline-flex;align-items:center;min-height:34px;border:1px solid var(--line);border-radius:999px;padding:0 14px;font-size:14px;color:var(--ink);transition:border-color .2s,color .2s" style-hover="border-color:var(--accent);color:var(--accent)">{{ s.label }}</a>
           </sc-for>
         </div>
@@ -773,8 +773,7 @@ class Component extends DCLogic {
       socials: [
         { label: 'Telegram', href: 'https://t.me/hpemanager' },
         { label: 'WhatsApp', href: 'https://wa.me/79161473875' },
-        { label: 'ВКонтакте', href: '#' },
-        { label: 'YouTube', href: '#' }
+        { label: 'ВКонтакте', href: 'https://vk.ru/hpecatering' }
       ],
       footNav: [
         { label: 'Направления', href: '#directions' },
