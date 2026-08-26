@@ -40,6 +40,56 @@
   <div style="width:38px;height:38px;border:3px solid rgba(10,47,48,0.15);border-top-color:#A9662F;border-radius:50%;animation:hpe-preloader-spin .9s linear infinite"></div>
 </div>
 <style>@keyframes hpe-preloader-spin{to{transform:rotate(360deg)}}</style>
+
+<div id="hpe-cookie-banner" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:9998;background:#0A2F30;color:#EFE9DF;padding:18px 24px;font-family:'DM Sans',Arial,sans-serif;box-sizing:border-box">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="flex:1 1 320px;font-size:14px;line-height:1.55;font-weight:300">
+      Мы используем файлы cookie для аналитики посещаемости сайта. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием либо можете отказаться. Подробнее — в <a href="/privacy.html" style="color:#D9A26B;text-decoration:underline">Политике конфиденциальности</a>.
+    </div>
+    <div style="display:flex;gap:12px;flex:0 0 auto">
+      <button id="hpe-cookie-decline" style="min-height:40px;background:none;border:1px solid rgba(239,233,223,0.35);color:#EFE9DF;padding:0 20px;border-radius:999px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;cursor:pointer">Отклонить</button>
+      <button id="hpe-cookie-accept" style="min-height:40px;background:#D9A26B;border:1px solid #D9A26B;color:#0A2F30;padding:0 20px;border-radius:999px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Принять</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  function loadYandexMetrika() {
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111977920', 'ym');
+    ym(111977920, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    var noscriptImg = document.createElement('noscript');
+    noscriptImg.innerHTML = '<div><img src="https://mc.yandex.ru/watch/111977920" style="position:absolute; left:-9999px;" alt="" /></div>';
+    document.body.appendChild(noscriptImg);
+  }
+
+  var STORAGE_KEY = 'hpe_cookie_consent';
+  var banner = document.getElementById('hpe-cookie-banner');
+  var saved;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { saved = null; }
+
+  if (saved === 'accepted') {
+    loadYandexMetrika();
+  } else if (saved !== 'declined' && banner) {
+    banner.style.display = 'block';
+  }
+
+  document.getElementById('hpe-cookie-accept').addEventListener('click', function () {
+    try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch (e) {}
+    banner.style.display = 'none';
+    loadYandexMetrika();
+  });
+  document.getElementById('hpe-cookie-decline').addEventListener('click', function () {
+    try { localStorage.setItem(STORAGE_KEY, 'declined'); } catch (e) {}
+    banner.style.display = 'none';
+  });
+})();
+</script>
+
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -432,7 +482,7 @@
       <div>
         <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Правовое</div>
         <div style="display:flex;flex-direction:column;gap:14px">
-          <a href="#" style="font-size:17px;color:var(--ink)">Политика конфиденциальности</a>
+          <a href="/privacy.html" style="font-size:17px;color:var(--ink)">Политика конфиденциальности</a>
           <a href="#" style="font-size:17px;color:var(--ink)">Пользовательское соглашение</a>
           <a href="#" style="font-size:17px;color:var(--ink)">Согласие на обработку ПДн</a>
           <span style="font-size:17px;font-weight:500;color:var(--accent)">18+</span>
