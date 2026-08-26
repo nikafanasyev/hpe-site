@@ -41,17 +41,52 @@
 </div>
 <style>@keyframes hpe-preloader-spin{to{transform:rotate(360deg)}}</style>
 
-<div id="hpe-cookie-banner" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:9998;background:#0A2F30;color:#EFE9DF;padding:18px 24px;font-family:'DM Sans',Arial,sans-serif;box-sizing:border-box">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-    <div style="flex:1 1 320px;font-size:14px;line-height:1.55;font-weight:300">
-      Мы используем файлы cookie для аналитики посещаемости сайта. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием либо можете отказаться. Подробнее — в <a href="/privacy.html" style="color:#D9A26B;text-decoration:underline">Политике конфиденциальности</a>.
-    </div>
-    <div style="display:flex;gap:12px;flex:0 0 auto">
-      <button id="hpe-cookie-decline" style="min-height:40px;background:none;border:1px solid rgba(239,233,223,0.35);color:#EFE9DF;padding:0 20px;border-radius:999px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;cursor:pointer">Отклонить</button>
-      <button id="hpe-cookie-accept" style="min-height:40px;background:#D9A26B;border:1px solid #D9A26B;color:#0A2F30;padding:0 20px;border-radius:999px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Принять</button>
-    </div>
+<div id="hpe-cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:520px;margin:0 auto;background:#0D2321;color:#EFE9DF;border:1px solid rgba(217,162,107,0.35);border-radius:12px;padding:20px 22px;font-family:'DM Sans',Arial,sans-serif;box-sizing:border-box;box-shadow:0 12px 40px rgba(0,0,0,0.35)">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    <span style="width:20px;height:20px;border-radius:50%;border:1.5px solid #D9A26B;display:flex;align-items:center;justify-content:center;flex:0 0 auto">
+      <span style="width:6px;height:6px;border-radius:50%;background:#D9A26B;display:block"></span>
+    </span>
+    <div style="font-size:15px;font-weight:500;color:#D9A26B">Мы используем файлы cookie</div>
+  </div>
+  <div style="font-size:14px;line-height:1.55;font-weight:300;color:rgba(239,233,223,0.85);margin-bottom:16px">
+    Мы используем файлы cookie и сервис веб-аналитики Яндекс.Метрика для сбора статистики и улучшения работы сайта. Подробнее — в <a href="/privacy.html" style="color:#D9A26B;text-decoration:underline">Политике конфиденциальности</a>.
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button id="hpe-cookie-settings-open" style="flex:1 1 auto;min-height:42px;background:rgba(239,233,223,0.08);border:1px solid rgba(239,233,223,0.25);color:#EFE9DF;padding:0 18px;border-radius:8px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;cursor:pointer">Настройки</button>
+    <button id="hpe-cookie-accept" style="flex:1 1 auto;min-height:42px;background:#D9A26B;border:1px solid #D9A26B;color:#0A2F30;padding:0 18px;border-radius:8px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Принять</button>
   </div>
 </div>
+
+<div id="hpe-cookie-modal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:20px;background:rgba(7,22,21,0.6);box-sizing:border-box">
+  <div style="width:100%;max-width:420px;background:#FBF7F1;color:#0A2F30;border-radius:12px;padding:28px 26px;position:relative;box-sizing:border-box;font-family:'DM Sans',Arial,sans-serif">
+    <button id="hpe-cookie-modal-close" aria-label="Закрыть" style="position:absolute;top:14px;right:14px;width:32px;height:32px;background:none;border:1px solid rgba(10,47,48,0.2);border-radius:8px;color:#0A2F30;font-size:16px;line-height:1;cursor:pointer">×</button>
+    <div style="font-size:19px;font-weight:500;margin-bottom:10px">Настройки cookie</div>
+    <div style="font-size:14px;line-height:1.5;color:#3D5D5E;margin-bottom:20px;font-weight:300">Необходимые cookie всегда активны. Аналитические можно отключить.</div>
+
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid rgba(10,47,48,0.12)">
+      <div>
+        <div style="font-size:15px;font-weight:500;margin-bottom:4px">Необходимые</div>
+        <div style="font-size:13px;color:#6B8384;font-weight:300;line-height:1.5">Базовая работа сайта и сохранение выбора cookie-настроек.</div>
+      </div>
+      <span style="flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:#A9662F;position:relative;margin-top:2px">
+        <span style="position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#FBF7F1;display:block"></span>
+      </span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid rgba(10,47,48,0.12)">
+      <div>
+        <div style="font-size:15px;font-weight:500;margin-bottom:4px">Аналитические</div>
+        <div style="font-size:13px;color:#6B8384;font-weight:300;line-height:1.5">Яндекс.Метрика — статистика посещений и поведения на сайте.</div>
+      </div>
+      <button id="hpe-cookie-analytics-toggle" role="switch" aria-checked="true" style="flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:#A9662F;position:relative;margin-top:2px;border:none;cursor:pointer;padding:0">
+        <span id="hpe-cookie-analytics-knob" style="position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#FBF7F1;display:block;transition:right .15s ease,left .15s ease"></span>
+      </button>
+    </div>
+
+    <button id="hpe-cookie-save" style="margin-top:20px;width:100%;min-height:46px;background:#0A2F30;color:#FBF7F1;border:none;border-radius:8px;font-family:'DM Sans',Arial,sans-serif;font-size:15px;font-weight:500;cursor:pointer">Сохранить</button>
+  </div>
+</div>
+
 <script>
 (function () {
   function loadYandexMetrika() {
@@ -69,23 +104,58 @@
 
   var STORAGE_KEY = 'hpe_cookie_consent';
   var banner = document.getElementById('hpe-cookie-banner');
+  var modal = document.getElementById('hpe-cookie-modal');
+  var toggle = document.getElementById('hpe-cookie-analytics-toggle');
+  var knob = document.getElementById('hpe-cookie-analytics-knob');
+  var analyticsOn = true;
+
+  function renderToggle() {
+    toggle.setAttribute('aria-checked', analyticsOn ? 'true' : 'false');
+    toggle.style.background = analyticsOn ? '#A9662F' : 'rgba(10,47,48,0.2)';
+    if (analyticsOn) { knob.style.right = '2px'; knob.style.left = 'auto'; }
+    else { knob.style.left = '2px'; knob.style.right = 'auto'; }
+  }
+
+  function hideAll() {
+    banner.style.display = 'none';
+    modal.style.display = 'none';
+  }
+
+  function apply(consentAnalytics) {
+    try { localStorage.setItem(STORAGE_KEY, consentAnalytics ? 'accepted' : 'declined'); } catch (e) {}
+    hideAll();
+    if (consentAnalytics) loadYandexMetrika();
+  }
+
   var saved;
   try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { saved = null; }
 
   if (saved === 'accepted') {
     loadYandexMetrika();
-  } else if (saved !== 'declined' && banner) {
+  } else if (saved === 'declined') {
+    analyticsOn = false;
+  } else if (banner) {
     banner.style.display = 'block';
   }
+  renderToggle();
 
   document.getElementById('hpe-cookie-accept').addEventListener('click', function () {
-    try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch (e) {}
-    banner.style.display = 'none';
-    loadYandexMetrika();
+    analyticsOn = true;
+    renderToggle();
+    apply(true);
   });
-  document.getElementById('hpe-cookie-decline').addEventListener('click', function () {
-    try { localStorage.setItem(STORAGE_KEY, 'declined'); } catch (e) {}
-    banner.style.display = 'none';
+  document.getElementById('hpe-cookie-settings-open').addEventListener('click', function () {
+    modal.style.display = 'flex';
+  });
+  document.getElementById('hpe-cookie-modal-close').addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+  toggle.addEventListener('click', function () {
+    analyticsOn = !analyticsOn;
+    renderToggle();
+  });
+  document.getElementById('hpe-cookie-save').addEventListener('click', function () {
+    apply(analyticsOn);
   });
 })();
 </script>
