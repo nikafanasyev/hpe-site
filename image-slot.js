@@ -297,7 +297,12 @@
     // same left/top/width/height in frame-%, computed by _applyView(), so the
     // inside-mask crop and the outside-mask spill stay pixel-aligned.
     '.frame img{position:absolute;max-width:none;transform:translate(-50%,-50%);' +
-    '  -webkit-user-drag:none;user-select:none}' +
+    '  -webkit-user-drag:none;user-select:none;' +
+    // iOS Safari shows its own long-press callout (Save Image / Copy / …) on
+    // any <img> by default, which eats the touch and stalls scrolling for
+    // as long as the finger is held down before it decides it's not a tap.
+    // -webkit-touch-callout:none turns that off so a held finger just scrolls.
+    '  -webkit-touch-callout:none}' +
     // touch-action:none is only needed while an image is actually
     // draggable/repositionable (edit mode, data-editable). On the live
     // published site nothing sets data-editable, so leaving touch-action
